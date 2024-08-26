@@ -125,6 +125,31 @@ This block displays the date and links to Google Calendar.
 {% endif %}
 
 {% comment %}
+CONTACT EMAIL ADDRESS
+
+Display the contact email address set in the configuration file.
+{% endcomment %}
+<p id="contact">
+  <strong>Contact:</strong>
+  Please email
+  {% if page.email %}
+  {% for email in page.email %}
+  {% if forloop.last and page.email.size > 1 %}
+  or
+  {% else %}
+  {% unless forloop.first %}
+  ,
+  {% endunless %}
+  {% endif %}
+  <a href='mailto:{{email}}'>{{email}}</a>
+  {% endfor %}
+  {% else %}
+  to-be-announced
+  {% endif %}
+  for more information.
+</p>
+
+{% comment %}
 SPECIAL REQUIREMENTS
 
 Modify the block below if there are any special requirements.
@@ -174,31 +199,6 @@ special instructions.
   learners attend workshops and use our lessons to make sense of computational and programming jargon written in English by offering it 
   in their native language. Translating data science terms also provides a teaching tool for Carpentries Instructors to reduce barriers 
   for their learners.
-</p>
-
-{% comment %}
-CONTACT EMAIL ADDRESS
-
-Display the contact email address set in the configuration file.
-{% endcomment %}
-<p id="contact">
-  <strong>Contact:</strong>
-  Please email
-  {% if page.email %}
-  {% for email in page.email %}
-  {% if forloop.last and page.email.size > 1 %}
-  or
-  {% else %}
-  {% unless forloop.first %}
-  ,
-  {% endunless %}
-  {% endif %}
-  <a href='mailto:{{email}}'>{{email}}</a>
-  {% endfor %}
-  {% else %}
-  to-be-announced
-  {% endif %}
-  for more information.
 </p>
 
 <p id="roles">
